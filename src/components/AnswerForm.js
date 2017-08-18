@@ -1,29 +1,70 @@
-import React, { Component } from "react";
-import { View, Text, TouchableOpacity } from 'react-native';
-import { Keyboard } from "./common";
+import React, { Component } from 'react';
+import { View, TouchableOpacity, Keyboard } from 'react-native';
+import uuid from 'uuid/v1'
+import { MathKeyboard, LaTex } from './common';
+
 
 class AnswerForm extends Component {
-  state = { text: '', keyboardVisible: false }
+  state = {
+    equations: [{
+      text: '',
+      typed: '',
+      id: uuid()
+    }],
+    line: 0,
+    text: '',
+    keyboardVisible: false
+  }
+
+  onDelete = () => {
+    // let text = this.state.text
+    // let deletedText = text.substring(0, text.length - 1);
+    // this.setState({ text: deletedText })
+  }
+
+  onKeyboardEnter = () => {
+    console.log('Enter pressed')
+  }
+
+  onHandleKeyboard = (value) => {
+    const text = this.state.equations[this.state.line].text
+    const equations = this.state.equations
+    const equation = equations[this.state.line]
+    equation.text = text + value
+    equation.typed = value
+    console.log(equations)
+    this.setState({ equations })
+    Keyboard.dismiss()
+    // this.setState({ text: this.state.text + value })
+  }
+
+  onAnswerSheetPress = () => {
+    this.setState({ keyboardVisible: !this.state.keyboardVisible })
+  }
 
   render() {  
     const { container, answerStyle } = styles
+    const equationView = this.state.equations.map((equation) => 
+      <LaTex key={equation.id} text={equation.typed} />
+    )
 
     return (
       <View style={container}>
         <TouchableOpacity style={answerStyle} onPress={this.onAnswerSheetPress}>
-          <Text>{this.state.text}</Text>
+          {equationView}
         </TouchableOpacity>
-        <Keyboard keyboardVisible={this.state.keyboardVisible} onPress={(value) => this.setState({text: this.state.text + value})}/>
+        <MathKeyboard 
+          keyboardVisible={this.state.keyboardVisible} 
+          onPress={this.onHandleKeyboard}
+          onEnter={this.onKeyboardEnter}
+          onDelete={this.onDelete}
+        />
       </View>
     );
   }
-
-  onAnswerSheetPress = () => {
-    this.setState({keyboardVisible: !this.state.keyboardVisible})
-  }
 }
 
-styles = {
+const styles = {
   container: {
     flex: 3
   },

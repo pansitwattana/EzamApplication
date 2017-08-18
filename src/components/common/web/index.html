@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<header>
+    <link rel="stylesheet" href="./mathquill.css" />
+    <script src="./jquery.min.js"></script>
+    <script src="./mathquill.js"></script>
+    <script>
+        var MQ = MathQuill.getInterface(2);
+
+    </script>
+</header>
+
+<body>
+        <span id="problem">ax^2 + bx + c = 0</span>
+        <div id='test'>
+            not work
+        </div>
+        <script>
+          
+          document.addEventListener("message", function(data) {
+            document.querySelector('#test').innerHTML = 'worked'
+            var problemSpan = document.getElementById('problem').innerHTML = 'x^2'
+            MQ.StaticMath(problemSpan)
+            
+          });
+          var problemSpan = document.getElementById('problem');
+          MQ.StaticMath(problemSpan);
+          
+        </script>
+    
+</body>
+</html>
