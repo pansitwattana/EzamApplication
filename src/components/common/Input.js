@@ -1,45 +1,24 @@
-import React from 'react';
-import { TextInput, View, Text } from 'react-native';
+import React, { Component } from 'react';
+import { WebView } from 'react-native';
+// import { WebView } from "react-native-webview-messaging/WebView";
 
-const Input = ({ label, value, onChangeText, placeholder, secureTextEntry }) => {
-  const { inputStyle, labelStyle, containerStyle } = styles
+class Input extends Component {
+  componentDidUpdate() {
+    if (this.props.text || this.props.keystroke || this.props.cmd || this.props.active === false) {
+      console.log('updated equation')
+      console.log(this.props)
+      this.webview.postMessage(JSON.stringify(this.props))
+    }
+  }
 
-  return (
-    <View style={containerStyle}>
-      <Text style={labelStyle}>
-        {label}
-      </Text>
-      <TextInput 
-        secureTextEntry={secureTextEntry}
-        autoCorrect={false}
-        placeholder={placeholder}
-        value={value}
-        onChangeText={onChangeText}
-        style={inputStyle} 
+  render() {
+    return (
+      <WebView 
+        ref={(webview) => { this.webview = webview }}
+        source={{ uri: 'file:///android_asset/index.html' }}
+        startInLoadingState
       />
-    </View>
-  );
-};
-
-const styles = {
-  inputStyle: {
-    color: '#000',
-    paddingRight: 5,
-    paddingLeft: 5,
-    fontSize: 18,
-    lineHeight: 23,
-    flex: 2
-  },
-  labelStyle: {
-    fontSize: 18,
-    paddingLeft: 20,
-    flex: 1
-  },
-  containerStyle: {
-    height: 40,
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center'
+    );
   }
 }
 

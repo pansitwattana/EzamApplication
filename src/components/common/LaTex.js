@@ -4,10 +4,7 @@ import { WebView } from 'react-native';
 
 class LaTex extends Component {
   componentDidMount() {
-    this.webview.postMessage(this.props.text)
-  }
-
-  componentDidUpdate() {
+    console.log(this.props.text)
     this.webview.postMessage(this.props.text)
   }
 
@@ -15,12 +12,12 @@ class LaTex extends Component {
     return (
       <WebView 
         ref={(webview) => { this.webview = webview }}
-        source={{ uri: 'file:///android_asset/index.html' }}
+        source={{ uri: 'file:///android_asset/latex.html' }}
         startInLoadingState
-        style={{ height: 50 }}
+        style={{ height: 40 }}
       />
     );
   }
 }
 
-export { LaTex };
+export { LaTex }
