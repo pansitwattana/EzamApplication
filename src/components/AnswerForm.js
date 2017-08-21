@@ -97,6 +97,7 @@ class AnswerForm extends Component {
       <View style={container}>
         <ScrollView>
           <EquationView
+            question={'x^2+3x+10=0, \\ x=?'}
             equations={this.state.equations}
             line={this.state.line}
             onPress={this.onAnswerSheetPress}

@@ -40,7 +40,7 @@ const MathKeyboard = ({ keyboardVisible, onPress, onEnter, onKeystroke, onCmd, h
         </Flex>
         <Flex direction="row" wrap="wrap" align="center" justify="around">
           <Text style={textStyle} onPress={() => onPress('/')}>/</Text>
-          <Text style={textStyle} onPress={() => onCmd('\\sqrt')}>sqrt</Text>
+          <Text style={textStyle} onPress={() => onCmd('\\sqrt')}>√</Text>
           <Text style={textStyle} onPress={() => onPress('4')}>4</Text>
           <Text style={textStyle} onPress={() => onPress('5')}>5</Text>
           <Text style={textStyle} onPress={() => onPress('6')}>6</Text>

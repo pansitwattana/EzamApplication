@@ -4,7 +4,7 @@ import { Input, LaTex } from './common';
 
 const { Item } = List;
 
-const EquationView = ({ equations, onPress, line }) => {
+const EquationView = ({ question, equations, onPress, line }) => {
   const equationView = equations.map((equation, index) => 
     <Item 
       key={equation.id} 
@@ -20,7 +20,7 @@ const EquationView = ({ equations, onPress, line }) => {
     </Item>
   );
 
-  const latex = <LaTex text='x^2+3x+5' />
+  const latex = <LaTex text={question} />
 
   return (
     <List renderHeader={latex}>
