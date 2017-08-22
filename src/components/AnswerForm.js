@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { View, Keyboard, ScrollView } from 'react-native';
+// import ActionButton from 'react-native-action-button'
+// import Icon from 'react-native-vector-icons/Ionicons'
 import uuid from 'uuid/v1';
 import EquationView from './EquationView';
 import { MathKeyboard } from './common';
@@ -22,7 +24,12 @@ class AnswerForm extends Component {
 
   onKeyboardEnter = () => {
     const equations = this.state.equations;
-    equations[this.state.line].typed = '';
+    
+    const equation = equations[this.state.line]
+    equation.typed = ''
+    equation.key = null
+    equation.cmd = null
+    
     equations.push({
       text: null,
       typed: '',
@@ -32,11 +39,12 @@ class AnswerForm extends Component {
     });
     this.setState({
       equations,
-      line: equations.length + 1
+      line: equations.length - 1
     });
   };
 
   onHandleKeyboard = value => {
+    console.log(this.state)
     const text = this.state.equations[this.state.line].text;
     const equations = this.state.equations;
     const equation = equations[this.state.line];
@@ -103,6 +111,11 @@ class AnswerForm extends Component {
             line={this.state.line}
             onPress={this.onAnswerSheetPress}
           />
+          {/* <ActionButton buttonColor="rgba(231,76,60,1)">
+            <ActionButton.Item buttonColor='#9b59b6' title="New Task" onPress={() => console.log('notes tapped!')}>
+              <Icon name="me-create" style={styles.actionButtonIcon} />
+            </ActionButton.Item>
+          </ActionButton>> */}
         </ScrollView>
         <MathKeyboard
           keyboardVisible={this.state.keyboardVisible}

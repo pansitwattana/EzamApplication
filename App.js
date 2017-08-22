@@ -4,18 +4,13 @@ import firebase from 'firebase'
 import AnswerForm from './src/components/AnswerForm'
 import LoginForm from './src/components/LoginForm'
 
+const config = require('./configs/firebase.json')
+
 // import { PinBox, PinBoxList } from './Keyboard2';
 
 export default class App extends Component {
   componentWillMount() {
-    firebase.initializeApp({
-      apiKey: 'AIzaSyAtau_ldYK1E4al5ljsTxtVw4Gfdnajk_I',
-      authDomain: 'ezam-51dcc.firebaseapp.com',
-      databaseURL: 'https://ezam-51dcc.firebaseio.com',
-      projectId: 'ezam-51dcc',
-      storageBucket: 'ezam-51dcc.appspot.com',
-      messagingSenderId: '448662049456'
-    });
+    firebase.initializeApp(config);
     console.log(firebase.auth().currentUser)
   }
 
