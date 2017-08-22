@@ -11,6 +11,7 @@ class AnswerForm extends Component {
         text: '',
         typed: '',
         key: null,
+        cmd: null,
         id: uuid()
       }
     ],
@@ -31,7 +32,7 @@ class AnswerForm extends Component {
     });
     this.setState({
       equations,
-      line: this.state.line + 1
+      line: equations.length + 1
     });
   };
 
