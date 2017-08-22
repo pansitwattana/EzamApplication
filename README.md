@@ -10,13 +10,16 @@ Node.js
 
 Runs your app in development mode.
 
-
+run on android (require jdk)
 ### `react-native run-android`
 
-or 
+
+run on ios (require Xcode)
 
 ### `react-native run-ios`
 
+
+testing
 
 #### `npm test`
 
